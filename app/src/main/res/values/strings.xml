@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">GymAppOfficial</string>
+    <string name="inicio_sesion">Inicio de Sesión</string>
+    <string name="iniciar_sesion">Iniciar Sesión</string>
+    <string name="usuario">Usuario</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="registro">Registro</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="no_tienes_cuenta">¿No tienes cuenta aun?</string>
+    <string name="ya_tienes_cuenta">¿Ya tienes cuenta?</string>
+    <string name="password_visible_content_description">Hide Password</string>
+    <string name="password_hidden_content_description">Show Password</string>
+    <string name="inicia_sesion">Iniciar Sesion!</string>
+    <string name="registrate">Registrarse!</string>
+
 </resources>

@@ -1,4 +1,4 @@
-package com.example.gymappofficial.presentation.util
+package com.example.gymappofficial.presentation.ui.util
 
 sealed class Screen(val route: String) {
     object SplashScreen : Screen("splash_screen")
