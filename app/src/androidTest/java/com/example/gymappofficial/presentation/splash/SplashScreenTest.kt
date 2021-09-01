@@ -14,6 +14,8 @@ import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.TestCoroutineScope
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.*
 import org.junit.Before
@@ -32,17 +34,23 @@ class SplashScreenTest {
     @RelaxedMockK
     lateinit var navController: NavController
 
+    private val testDispatcher = TestCoroutineDispatcher()
+
     @Before //Called Before any test
     fun setUp() {
         MockKAnnotations.init(this)
     }
 
     @Test
-    fun splashScreen_displaysAndDisappears() = runBlockingTest {
+    fun splashScreen_displaysAndDisappears() = testDispatcher.runBlockingTest {
 
         composeTestRule.setContent { 
             GymAppOfficialTheme {
-                SplashScreen(navController = navController)
+                SplashScreen(
+                    navController = navController,
+                    dispatcher = testDispatcher
+                )
+
             }
         }
         composeTestRule
@@ -51,10 +59,12 @@ class SplashScreenTest {
         //No hace falta avanzar el tiempo porque runBlocking Test ya se encarga de eliminar delays
         //advanceTimeBy(Constants.SPLASH_SCREEN_DURATION)
 
+        advanceTimeBy(Constants.SPLASH_SCREEN_DURATION)
+
         //Dependency MockK
-        /*verify {
+        verify {
            navController.popBackStack()
            navController.navigate(Screen.LoginScreen.route)
-        }*/
+        }
     }
 }

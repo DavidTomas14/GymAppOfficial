@@ -12,5 +12,6 @@
     <string name="password_hidden_content_description">Show Password</string>
     <string name="inicia_sesion">Iniciar Sesion!</string>
     <string name="registrate">Registrarse!</string>
+    <string name="confirma_contrasena">Repetir Contraseña</string>
 
 </resources>
