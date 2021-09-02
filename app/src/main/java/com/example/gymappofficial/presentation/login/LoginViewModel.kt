@@ -10,7 +10,7 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor() : ViewModel() {
 
     private val _usuario = mutableStateOf("")
-    val username: State<String> = _usuario
+    val usuario: State<String> = _usuario
 
     private val _contrasena = mutableStateOf("")
     val contrasena: State<String> = _contrasena
@@ -21,8 +21,8 @@ class LoginViewModel @Inject constructor() : ViewModel() {
     private val _usuarioError = mutableStateOf("UserName too Long")
     val usuarioError: State<String> =_usuarioError
 
-    private val _passwordError = mutableStateOf("")
-    val passwordError: State<String> =_passwordError
+    private val _contrasenaError = mutableStateOf("")
+    val contrasenaError: State<String> =_contrasenaError
 
     fun setUsuario(usuarioText: String) {
         _usuario.value = usuarioText
@@ -39,8 +39,8 @@ class LoginViewModel @Inject constructor() : ViewModel() {
         _usuarioError.value = error
     }
 
-    fun setPasswordError(error: String) {
-        _passwordError.value = error
+    fun setContrasenaError(error: String) {
+        _contrasenaError.value = error
     }
 
 }

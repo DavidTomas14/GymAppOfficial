@@ -45,7 +45,7 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(PaddingMedium))
 
             StandardTextField(
-                text = loginviewModel.username.value,
+                text = loginviewModel.usuario.value,
                 hint = stringResource(id = R.string.usuario),
                 onValueChange = {
                     loginviewModel.setUsuario(it)
@@ -69,12 +69,15 @@ fun LoginScreen(
                 keyboardType = KeyboardType.Password,
                 color = Gray,
                 modifier = Modifier,
-                error = loginviewModel.passwordError.value
+                error = loginviewModel.contrasenaError.value
             )
 
             Spacer(modifier = Modifier.height(PaddingMedium))
             Button(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    navController.popBackStack()
+                    navController.navigate(Screen.GruposMuscularesScreen.route)
+                },
                 shape = RoundedCornerShape(50f),
                 modifier = Modifier
                     .align(Alignment.End),

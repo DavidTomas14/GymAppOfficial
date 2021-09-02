@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/dtalo/Desktop/Proyectos Android 2/AppGym/GymAppOfficial/app/src/main/res/drawable-v24/ic_brazo.xml" value="0.1" />
+        <entry key="..\:/Users/dtalo/Desktop/Proyectos Android 2/AppGym/GymAppOfficial/app/src/main/res/drawable-v24/ic_cross.xml" value="0.1345" />
+        <entry key="..\:/Users/dtalo/Desktop/Proyectos Android 2/AppGym/GymAppOfficial/app/src/main/res/drawable/ic_abdominales.xml" value="0.1" />
+        <entry key="..\:/Users/dtalo/Desktop/Proyectos Android 2/AppGym/GymAppOfficial/app/src/main/res/drawable/ic_corazon.xml" value="0.1345" />
+        <entry key="..\:/Users/dtalo/Desktop/Proyectos Android 2/AppGym/GymAppOfficial/app/src/main/res/drawable/ic_espalda.xml" value="0.1345" />
+        <entry key="..\:/Users/dtalo/Desktop/Proyectos Android 2/AppGym/GymAppOfficial/app/src/main/res/drawable/ic_hombro.xml" value="0.1345" />
+        <entry key="..\:/Users/dtalo/Desktop/Proyectos Android 2/AppGym/GymAppOfficial/app/src/main/res/drawable/ic_home.xml" value="0.1345" />
+        <entry key="..\:/Users/dtalo/Desktop/Proyectos Android 2/AppGym/GymAppOfficial/app/src/main/res/drawable/ic_pecho.xml" value="0.1345" />
+        <entry key="..\:/Users/dtalo/Desktop/Proyectos Android 2/AppGym/GymAppOfficial/app/src/main/res/drawable/ic_piernas.xml" value="0.1345" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
