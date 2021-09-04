@@ -1,20 +1,24 @@
 package com.example.gymappofficial.presentation.ui.util
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
+import com.example.gymappofficial.presentation.addejercicio.AddEjercicioScreen
 import com.example.gymappofficial.presentation.ejercicios_grupomuscular.EjerciciosGrupoMuscularScreen
 import com.example.gymappofficial.presentation.gruposmusculares.GruposMuscularesScreen
+import com.example.gymappofficial.presentation.historial_ejercicio.HistorialEjercicioScreen
+import com.example.gymappofficial.presentation.info_ejercicio.InfoEjercicioScreen
 import com.example.gymappofficial.presentation.login.LoginScreen
 import com.example.gymappofficial.presentation.register.RegisterScreen
 import com.example.gymappofficial.presentation.splash.SplashScreen
-
 @Composable
-fun Navigation() {
-    val navController = rememberNavController()
+fun Navigation(
+    navController: NavHostController
+) {
     NavHost(
         navController = navController,
         startDestination = Screen.SplashScreen.route
@@ -42,6 +46,18 @@ fun Navigation() {
             ),
         ) { backStackEntry ->
             EjerciciosGrupoMuscularScreen(navController = navController, grupoMuscular = backStackEntry.arguments?.getString("nombre_grupo_muscular"))
+        }
+
+        composable(Screen.AddEjercicioScreen.route) {
+            AddEjercicioScreen(navController = navController)
+        }
+
+        composable(Screen.InfoEjercicioScreen.route) {
+            InfoEjercicioScreen(navController = navController)
+        }
+
+        composable(Screen.HistorialEjercicioScreen.route) {
+            HistorialEjercicioScreen(navController = navController)
         }
 
     }

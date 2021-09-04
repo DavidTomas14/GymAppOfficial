@@ -6,12 +6,16 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -20,6 +24,7 @@ import androidx.navigation.NavController
 import com.example.gymappofficial.domain.models.Ejercicio
 import com.example.gymappofficial.presentation.ui.theme.*
 import com.example.gymappofficial.R
+import com.example.gymappofficial.presentation.ui.util.Screen
 import timber.log.Timber
 
 @Composable
@@ -27,22 +32,25 @@ fun EjerciciosGrupoMuscularScreen(
     navController: NavController,
     ejerciciosGrupoMuscularViewModel: EjerciciosGrupoMuscularViewModel = hiltViewModel(),
     grupoMuscular: String?
-){
-    val scaffoldState = rememberScaffoldState()
-    Timber.d("$grupoMuscular")
+) {
 
     Scaffold(
-        scaffoldState = scaffoldState,
         floatingActionButton = {
-            FloatingActionButton(onClick = { /*TODO*/ }) {
-                Text(
-                    text = "+",
-                    fontSize = 25.sp,
-                    textAlign = TextAlign.Center
-                )
-            }
+                FloatingActionButton(
+                    onClick = {
+                              navController.navigate(Screen.AddEjercicioScreen.route)
+                    },
+                    backgroundColor = CursorBotones,
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Add,
+                        contentDescription = stringResource(id = R.string.addEjercicio),
+                        tint = Color.Black
+                    )
+                }
         },
-        floatingActionButtonPosition = FabPosition.End
+        isFloatingActionButtonDocked = true,
+        floatingActionButtonPosition = FabPosition.End,
     ) {
         Box(
             modifier = Modifier
@@ -98,7 +106,7 @@ fun EjerciciosGrupoMuscularScreen(
 @Composable
 fun TituloLista(
     grupoMuscular: String
-){
+) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -118,18 +126,19 @@ fun ListaEjercicios(ejercicios: List<Ejercicio>) {
         modifier = Modifier.fillMaxWidth()
     ) {
         items(ejercicios.size) {
-            EjercicioItem(ejercicio = ejercicios[it], color =
-            if (it==0 || it % 4==0) {
-                BlueViolet2
-            }else if (it == 1 || (it - 1) % 4 == 0) {
-                OrangeYellow2
-            }else if (it == 2 || (it - 2) % 4 == 0) {
-                Beige2
-            }else if (it == 3 || (it - 3) % 4 == 0) {
-                LightGreen1
-            }else {
-                TextWhite
-            }
+            EjercicioItem(
+                ejercicio = ejercicios[it], color =
+                if (it == 0 || it % 4 == 0) {
+                    BlueViolet2
+                } else if (it == 1 || (it - 1) % 4 == 0) {
+                    OrangeYellow2
+                } else if (it == 2 || (it - 2) % 4 == 0) {
+                    Beige2
+                } else if (it == 3 || (it - 3) % 4 == 0) {
+                    LightGreen1
+                } else {
+                    TextWhite
+                }
 
             )
         }
@@ -143,7 +152,13 @@ fun EjercicioItem(
 ) {
     Row(
         modifier = Modifier
-            .padding( PaddingValues(start = PaddingSmall, end = PaddingSmall, top = PaddingSmall / 2f ))
+            .padding(
+                PaddingValues(
+                    start = PaddingSmall,
+                    end = PaddingSmall,
+                    top = PaddingSmall / 2f
+                )
+            )
             .clip(RoundedCornerShape(20.dp))
             .background(color)
             .fillMaxWidth(),

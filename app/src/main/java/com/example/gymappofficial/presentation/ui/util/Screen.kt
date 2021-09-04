@@ -6,8 +6,8 @@ sealed class Screen(val route: String) {
     object RegisterScreen : Screen("register_screen")
     object GruposMuscularesScreen : Screen("gruposmusculares_screen")
     object EjerciciosGrupoMuscularScreen : Screen("ejercicios_screen")
-    object EjercicioDetailScreen : Screen("ejerciciodetail_screen")
     object AddEjercicioScreen : Screen("addejercicio_screen")
     object InfoEjercicioScreen : Screen("infoejercico_screen")
-    object GraficoEjercicioScreen : Screen("graficoejercicio_screen")
+    object HistorialEjercicioScreen : Screen("graficoejercicio_screen")
+    object AddPesoScreen: Screen("addpeso_screen")
 }

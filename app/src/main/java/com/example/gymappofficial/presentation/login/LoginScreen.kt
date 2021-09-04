@@ -51,7 +51,6 @@ fun LoginScreen(
                     loginviewModel.setUsuario(it)
                 },
                 color = Gray,
-                modifier = Modifier,
                 error = loginviewModel.usuarioError.value
             )
 
@@ -68,7 +67,6 @@ fun LoginScreen(
                 isPasswordVisible = loginviewModel.isPasswordVisible.value,
                 keyboardType = KeyboardType.Password,
                 color = Gray,
-                modifier = Modifier,
                 error = loginviewModel.contrasenaError.value
             )
 

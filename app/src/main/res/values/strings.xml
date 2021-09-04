@@ -13,5 +13,13 @@
     <string name="inicia_sesion">Iniciar Sesion!</string>
     <string name="registrate">Registrarse!</string>
     <string name="confirma_contrasena">Repetir Contraseña</string>
+    <string name="nombre">Nombre</string>
+    <string name="addEjercicio">Añadir Ejercicio</string>
+    <string name="decripcion">Descripcion</string>
+    <string name="guardar">Guardar</string>
+    <string name="home">Home</string>
+    <string name="grafico">Grafico</string>
+    <string name="video">Video</string>
+    <string name="editar_ejercicio">Editar Ejercicio</string>
 
 </resources>

@@ -2,6 +2,7 @@ package com.example.gymappofficial.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -12,7 +13,9 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
@@ -27,10 +30,12 @@ import com.example.gymappofficial.presentation.ui.util.TestTags.STANDARD_TEXT_FI
 
 @Composable
 fun StandardTextField(
-    modifier: Modifier= Modifier,
+    modifierTextField: Modifier= Modifier,
+    modifierText: Modifier= Modifier,
     text: String = "",
     hint: String = "",
     maxLength: Int = 15,
+    maxLines: Int = 1,
     color: Color,
     error: String = "",
     keyboardType: KeyboardType = KeyboardType.Text,
@@ -45,10 +50,11 @@ fun StandardTextField(
         mutableStateOf(keyboardType == KeyboardType.Password)
     }
     Column (
-        modifier = modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth()
     ){
         TextField(
             value = text,
+            maxLines = maxLines,
             onValueChange = {
                 if (it.length <= maxLength) {
                     onValueChange(it)
@@ -57,7 +63,8 @@ fun StandardTextField(
             placeholder = {
                 Text(
                     text = hint,
-                    style = MaterialTheme.typography.body1
+                    style = MaterialTheme.typography.body1,
+                    modifier = modifierText
                 )
             },
             visualTransformation = if (!isPasswordVisible && isPasswordToggleDisplayed) {
@@ -97,7 +104,7 @@ fun StandardTextField(
                 }
 
             },
-            modifier = Modifier
+            modifier = modifierTextField
                 .fillMaxWidth()
                 .background(color)
                 .semantics {

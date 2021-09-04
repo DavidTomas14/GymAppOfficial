@@ -47,7 +47,6 @@ fun RegisterScreen(
                 color = Gray,
                 text = registerViewModel.usuario.value,
                 hint = stringResource(id = R.string.usuario),
-                modifier = Modifier ,
                 error = registerViewModel.usuarioError.value,
                 onValueChange = {
                     registerViewModel.setUsuario(it)
@@ -63,7 +62,6 @@ fun RegisterScreen(
                     id = R.string.contrasena
                 ),
                 error = registerViewModel.contrasenaError.value,
-                modifier = Modifier,
                 isPasswordVisible = registerViewModel.isPasswordVisible.value,
                 onToggleClickChange = {
                     registerViewModel.setPasswordVisibility(it)
@@ -79,7 +77,6 @@ fun RegisterScreen(
                 hint = stringResource(
                     id = R.string.confirma_contrasena
                 ),
-                modifier = Modifier,
                 isPasswordVisible = registerViewModel.isPasswordVisible.value,
                 onValueChange = {
                     registerViewModel.setConstrasenaRepetida(it)
