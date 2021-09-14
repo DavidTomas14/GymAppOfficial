@@ -10,20 +10,23 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.OndemandVideo
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.gymappofficial.R
 import com.example.gymappofficial.domain.models.BottomNavItem
 import com.example.gymappofficial.presentation.ui.theme.CursorBotones
+import com.example.gymappofficial.presentation.ui.theme.Gray
 import com.example.gymappofficial.presentation.ui.theme.LightGray
 import com.example.gymappofficial.presentation.ui.util.Screen
-
-
 
 
 @Composable
@@ -31,8 +34,11 @@ fun StandardScaffold(
     modifier: Modifier = Modifier,
     navController: NavController,
     showBottonBar: Boolean = false,
+    showToolbar: Boolean = false,
+    toolbarTitle: String? = null,
     showFAB: Boolean = false,
     iconFAB: ImageVector? = null,
+    grupoMuscularActual: String? = null,
     bottomNavItems: List<BottomNavItem> = listOf(
         BottomNavItem(
             route = Screen.InfoEjercicioScreen.route,
@@ -48,8 +54,53 @@ fun StandardScaffold(
     onFabClick: () -> Unit = {},
     content: @Composable () -> Unit
 ) {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
     Scaffold(
         modifier = modifier,
+        topBar = {
+            if (showToolbar) {
+                TopAppBar(
+                    contentColor = Gray,
+                    elevation = 5.dp,
+                    title = {
+                        if (toolbarTitle != null) {
+                            Text(
+                                text = toolbarTitle,
+                                style = MaterialTheme.typography.h2
+                            )
+                        }
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = {
+                            navController.navigate(Screen.EjerciciosGrupoMuscularScreen.route + "/" + grupoMuscularActual) {
+                              popUpTo(Screen.InfoEjercicioScreen.route){inclusive = true}
+                            }
+
+                           /* when (navBackStackEntry?.destination?.route) {
+                                Screen.EjerciciosGrupoMuscularScreen.route -> {
+                                    navController.navigate(Screen.GruposMuscularesScreen.route)
+                                    navController.popBackStack()
+                                }
+                                Screen.InfoEjercicioScreen.route -> {
+                                    navController.navigate(Screen.EjerciciosGrupoMuscularScreen.route + "/" + grupoMuscularActual)
+                                    navController.popBackStack()
+                                }
+                                else -> null
+
+                            }*/
+                        }) {
+                            Icon(
+                                imageVector = Icons.Default.ArrowBack,
+                                contentDescription = stringResource(
+                                    id = R.string.arrow_back
+                                ),
+                                tint = Color.White
+                            )
+                        }
+                    }
+                )
+            }
+        },
         bottomBar = {
             if (showBottonBar) {
                 BottomAppBar(

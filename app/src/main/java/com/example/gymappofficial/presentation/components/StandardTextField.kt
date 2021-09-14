@@ -39,6 +39,7 @@ fun StandardTextField(
     color: Color,
     error: String = "",
     keyboardType: KeyboardType = KeyboardType.Text,
+    isPasswordToggleDisplayed: Boolean = keyboardType == KeyboardType.Password,
     radiusPercent: Float = 30f,
     isPasswordVisible: Boolean = false,
     onValueChange: (String) -> Unit,
@@ -46,9 +47,6 @@ fun StandardTextField(
 
 ) {
 
-    val isPasswordToggleDisplayed by remember {
-        mutableStateOf(keyboardType == KeyboardType.Password)
-    }
     Column (
         modifier = Modifier.fillMaxWidth()
     ){

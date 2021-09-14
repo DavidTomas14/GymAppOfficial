@@ -52,8 +52,17 @@ fun Navigation(
             AddEjercicioScreen(navController = navController)
         }
 
-        composable(Screen.InfoEjercicioScreen.route) {
-            InfoEjercicioScreen(navController = navController)
+        composable(
+            route = Screen.InfoEjercicioScreen.route + "/{id_ejercicio}",
+            arguments = listOf(
+                navArgument("id_ejercicio"){
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = false
+                }
+            )
+        ) { backstackEntry ->
+            InfoEjercicioScreen(navController = navController, idEjercicio = backstackEntry.arguments?.getString("id_ejercicio"))
         }
 
         composable(Screen.HistorialEjercicioScreen.route) {

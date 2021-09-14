@@ -2,6 +2,7 @@ package com.example.gymappofficial.presentation.ejercicios_grupomuscular
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,6 +25,7 @@ import androidx.navigation.NavController
 import com.example.gymappofficial.domain.models.Ejercicio
 import com.example.gymappofficial.presentation.ui.theme.*
 import com.example.gymappofficial.R
+import com.example.gymappofficial.presentation.components.StandardScaffold
 import com.example.gymappofficial.presentation.ui.util.Screen
 import timber.log.Timber
 
@@ -33,12 +35,16 @@ fun EjerciciosGrupoMuscularScreen(
     ejerciciosGrupoMuscularViewModel: EjerciciosGrupoMuscularViewModel = hiltViewModel(),
     grupoMuscular: String?
 ) {
-
-    Scaffold(
-        floatingActionButton = {
+    StandardScaffold(
+        navController = navController,
+        showToolbar = true,
+        toolbarTitle = grupoMuscular
+    ) {
+        Scaffold(
+            floatingActionButton = {
                 FloatingActionButton(
                     onClick = {
-                              navController.navigate(Screen.AddEjercicioScreen.route)
+                        navController.navigate(Screen.AddEjercicioScreen.route)
                     },
                     backgroundColor = CursorBotones,
                 ) {
@@ -48,98 +54,108 @@ fun EjerciciosGrupoMuscularScreen(
                         tint = Color.Black
                     )
                 }
-        },
-        isFloatingActionButtonDocked = true,
-        floatingActionButtonPosition = FabPosition.End,
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(DeepBlue)
-                .padding()
-        )
-
-        Column {
-            TituloLista(grupoMuscular = "Espalda")
-            ListaEjercicios(
-                ejercicios = listOf(
-                    Ejercicio(
-                        "David",
-                        "Biceps",
-                        "Banco de Scott",
-                        listOf(54.5f, 52.6f),
-                        listOf("8 repes soy un toro", "6 repes me he muerto"),
-                        listOf("11:44 1-02-2021", "13:15 3-03-2021"),
-                        isSynced = true
-                    ),
-                    Ejercicio(
-                        "David",
-                        "Biceps",
-                        "Banco de Scott",
-                        listOf(54.5f, 52.6f),
-                        listOf("8 repes soy un toro", "6 repes me he muerto"),
-                        listOf("11:44 1-02-2021", "13:15 3-03-2021")
-                    ),
-                    Ejercicio(
-                        "David",
-                        "Biceps",
-                        "Banco de Scott",
-                        listOf(54.5f, 52.6f),
-                        listOf("8 repes soy un toro", "6 repes me he muerto"),
-                        listOf("11:44 1-02-2021", "13:15 3-03-2021"),
-                        isSynced = true
-                    ),
-                    Ejercicio(
-                        "David",
-                        "Biceps",
-                        "Banco de Scott",
-                        listOf(54.5f, 52.6f),
-                        listOf("8 repes soy un toro", "6 repes me he muerto"),
-                        listOf("11:44 1-02-2021", "13:15 3-03-2021")
-                    )
-                )
+            },
+            isFloatingActionButtonDocked = true,
+            floatingActionButtonPosition = FabPosition.End,
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(DeepBlue)
+                    .padding()
             )
+
+            Column {
+                Spacer(modifier = Modifier.height(PaddingMedium))
+                ListaEjercicios(
+                    ejercicios = listOf(
+                        Ejercicio(
+                            id = "1",
+                            "David",
+                            "Biceps",
+                            "Banco de Scott",
+                            "Ejercicio de brazos muy bueno",
+                            listOf(54.5f, 52.6f),
+                            listOf("8 repes soy un toro", "6 repes me he muerto"),
+                            listOf("11:44 1-02-2021", "13:15 3-03-2021"),
+                            comentarioSubidaPeso = "Estoy ready",
+                            subidaPeso = 1,
+                            isSynced = true
+                        ),
+                        Ejercicio(
+                            id = "2",
+                            "David",
+                            "Biceps",
+                            "Press de Banca",
+                            "Ejercicio de brazos muy bueno",
+                            listOf(54.5f, 52.6f),
+                            listOf("8 repes soy un toro", "6 repes me he muerto"),
+                            listOf("11:44 1-02-2021", "13:15 3-03-2021"),
+                            comentarioSubidaPeso = "Estoy ready",
+                            subidaPeso = 1,
+                            isSynced = true
+                        ),
+                        Ejercicio(
+                            id = "3",
+                            "David",
+                            "Biceps",
+                            "Curl de Biceps",
+                            "Ejercicio de brazos muy bueno",
+                            listOf(54.5f, 52.6f),
+                            listOf("8 repes soy un toro", "6 repes me he muerto"),
+                            listOf("11:44 1-02-2021", "13:15 3-03-2021"),
+                            comentarioSubidaPeso = "Estoy ready",
+                            subidaPeso = 1,
+                            isSynced = true
+                        ),
+                        Ejercicio(
+                            id = "4",
+                            "David",
+                            "Biceps",
+                            "Pulldown" +
+                                    "",
+                            "Ejercicio de brazos muy bueno",
+                            listOf(54.5f, 52.6f),
+                            listOf("8 repes soy un toro", "6 repes me he muerto"),
+                            listOf("11:44 1-02-2021", "13:15 3-03-2021"),
+                            comentarioSubidaPeso = "Estoy ready",
+                            subidaPeso = 1,
+                            isSynced = true
+                        ),
+                    ), navController = navController
+                )
+            }
         }
     }
+
 }
 
 @Composable
-fun TituloLista(
-    grupoMuscular: String
+fun ListaEjercicios(
+    ejercicios: List<Ejercicio>,
+    navController: NavController
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(15.dp)
-    ) {
-        Text(
-            text = "Ejercicios de $grupoMuscular",
-            style = MaterialTheme.typography.h2,
-            modifier = Modifier.align(Alignment.Center)
-        )
-    }
-}
-
-@Composable
-fun ListaEjercicios(ejercicios: List<Ejercicio>) {
     LazyColumn(
         modifier = Modifier.fillMaxWidth()
     ) {
-        items(ejercicios.size) {
+        items(ejercicios.size) { index ->
             EjercicioItem(
-                ejercicio = ejercicios[it], color =
-                if (it == 0 || it % 4 == 0) {
+                ejercicio = ejercicios[index],
+                color =
+                if (index == 0 || index % 4 == 0) {
                     BlueViolet2
-                } else if (it == 1 || (it - 1) % 4 == 0) {
+                } else if (index == 1 || (index - 1) % 4 == 0) {
                     OrangeYellow2
-                } else if (it == 2 || (it - 2) % 4 == 0) {
+                } else if (index == 2 || (index - 2) % 4 == 0) {
                     Beige2
-                } else if (it == 3 || (it - 3) % 4 == 0) {
+                } else if (index == 3 || (index - 3) % 4 == 0) {
                     LightGreen1
                 } else {
                     TextWhite
+                },
+                onClick = {
+                    navController.navigate(Screen.InfoEjercicioScreen.route + "/${ejercicios[index].id}")
                 }
-
             )
         }
     }
@@ -149,6 +165,7 @@ fun ListaEjercicios(ejercicios: List<Ejercicio>) {
 fun EjercicioItem(
     ejercicio: Ejercicio,
     color: Color,
+    onClick: (String) -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -161,7 +178,8 @@ fun EjercicioItem(
             )
             .clip(RoundedCornerShape(20.dp))
             .background(color)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable { onClick(ejercicio.id) },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {

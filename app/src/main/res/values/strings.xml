@@ -21,5 +21,6 @@
     <string name="grafico">Grafico</string>
     <string name="video">Video</string>
     <string name="editar_ejercicio">Editar Ejercicio</string>
+    <string name="arrow_back">Arrow Back</string>
 
 </resources>

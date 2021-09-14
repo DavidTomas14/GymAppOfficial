@@ -49,10 +49,10 @@ class MainActivity : ComponentActivity() {
                     onFabClick = {
                         when (navBackStackEntry?.destination?.route) {
                             Screen.InfoEjercicioScreen.route -> {
-                                Icons.Default.Edit
+
                             }
                             Screen.HistorialEjercicioScreen.route -> {
-                                Icons.Default.Add
+
                             }
                             else -> null
                         }
