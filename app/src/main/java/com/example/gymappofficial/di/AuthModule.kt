@@ -1,8 +1,10 @@
 package com.example.gymappofficial.di
 
+import android.content.SharedPreferences
 import com.example.gymappofficial.feature_auth.data.remote.AuthApi
 import com.example.gymappofficial.feature_auth.data.repository.AuthRepositoryImpl
 import com.example.gymappofficial.feature_auth.domain.repository.AuthRepository
+import com.example.gymappofficial.feature_auth.domain.use_case.LoginUseCase
 import com.example.gymappofficial.feature_auth.domain.use_case.RegisterUseCase
 import dagger.Module
 import dagger.Provides
@@ -28,15 +30,22 @@ object AuthModule {
             .create(AuthApi::class.java)
     }
 
+
     @Provides
     @Singleton
-    fun provideAuthRepository(api: AuthApi): AuthRepository {
-        return AuthRepositoryImpl(api)
+    fun provideAuthRepository(api: AuthApi, sharedPreferences: SharedPreferences): AuthRepository {
+        return AuthRepositoryImpl(api, sharedPreferences)
     }
 
     @Provides
     @Singleton
-    fun registerUseCase(repository: AuthRepository): RegisterUseCase {
+    fun provideRegisterUseCase(repository: AuthRepository): RegisterUseCase {
         return RegisterUseCase(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLoginUseCase(repository: AuthRepository): LoginUseCase {
+        return LoginUseCase(repository)
     }
 }

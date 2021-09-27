@@ -2,13 +2,13 @@ package com.example.gymappofficial.feature_auth.presentation.login
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -18,13 +18,40 @@ import com.example.gymappofficial.R
 import com.example.gymappofficial.presentation.components.SpannableClickableText
 import com.example.gymappofficial.presentation.components.StandardTextField
 import com.example.gymappofficial.core.presentation.ui.theme.*
+import com.example.gymappofficial.core.presentation.util.asString
 import com.example.gymappofficial.core.util.Screen
+import com.example.gymappofficial.feature_auth.domain.models.AuthError
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun LoginScreen(
     navController: NavController,
+    scaffoldState: ScaffoldState,
     loginviewModel: LoginViewModel = hiltViewModel()
 ) {
+    val username = loginviewModel.username.value
+    val password = loginviewModel.password.value
+    val loginState = loginviewModel.loginState.value
+    val context = LocalContext.current
+
+    LaunchedEffect(key1 = true) {
+        loginviewModel.eventFlow.collectLatest { event ->
+            when (event) {
+                is LoginViewModel.UiEvent.SnackBarEvent -> {
+                    scaffoldState.snackbarHostState.showSnackbar(
+                        event.uiText.asString(context),
+                        duration = SnackbarDuration.Short
+                    )
+                }
+                is LoginViewModel.UiEvent.Navigate -> {
+                    navController.popBackStack()
+                    navController.navigate(event.route)
+                }
+            }
+        }
+    }
+
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -45,36 +72,45 @@ fun LoginScreen(
             Spacer(modifier = Modifier.height(PaddingMedium))
 
             StandardTextField(
-                text = loginviewModel.usuario.value,
+                text = username.text,
                 hint = stringResource(id = R.string.usuario),
                 onValueChange = {
-                    loginviewModel.setUsuario(it)
+                    loginviewModel.onEvent(LoginEvent.EnteredUsername(it))
                 },
                 color = Gray,
-                error = loginviewModel.usuarioError.value
+                error = when (username.error) {
+                    is AuthError.FieldEmpty -> {
+                        stringResource(id = R.string.this_field_cant_be_empty)
+                    }
+                    else -> ""
+                }
             )
 
             Spacer(modifier = Modifier.height(PaddingMedium))
             StandardTextField(
-                text = loginviewModel.contrasena.value,
+                text = password.text,
                 hint = stringResource(id = R.string.contrasena),
                 onValueChange = {
-                    loginviewModel.setContrasena(it)
+                    loginviewModel.onEvent(LoginEvent.EnteredPassword(it))
                 },
                 onToggleClickChange = {
-                    loginviewModel.setPasswordVisibility(it)
+                    loginviewModel.onEvent(LoginEvent.TogglePasswordVisibility)
                 },
-                isPasswordVisible = loginviewModel.isPasswordVisible.value,
+                isPasswordVisible = loginState.isPasswordVisible,
                 keyboardType = KeyboardType.Password,
                 color = Gray,
-                error = loginviewModel.contrasenaError.value
+                error = when (password.error) {
+                    is AuthError.FieldEmpty -> {
+                        stringResource(id = R.string.this_field_cant_be_empty)
+                    }
+                    else -> ""
+                }
             )
 
             Spacer(modifier = Modifier.height(PaddingMedium))
             Button(
                 onClick = {
-                    navController.popBackStack()
-                    navController.navigate(Screen.GruposMuscularesScreen.route)
+                    loginviewModel.onEvent(LoginEvent.Login)
                 },
                 shape = RoundedCornerShape(50f),
                 modifier = Modifier
@@ -86,7 +122,10 @@ fun LoginScreen(
                     color = Color.Black,
                     textAlign = TextAlign.Center,
 
-                )
+                    )
+            }
+            if (loginState.isLoading) {
+                CircularProgressIndicator()
             }
         }
         SpannableClickableText(

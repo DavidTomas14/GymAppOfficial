@@ -1,6 +1,8 @@
 package com.example.gymappofficial.feature_auth.data.repository
 
+import android.content.SharedPreferences
 import com.example.gymappofficial.R
+import com.example.gymappofficial.core.util.Constants
 import com.example.gymappofficial.core.util.Resource
 import com.example.gymappofficial.core.util.SimpleResource
 import com.example.gymappofficial.core.util.UiText
@@ -11,7 +13,8 @@ import okio.IOException
 import retrofit2.HttpException
 
 class AuthRepositoryImpl(
-    private val api: AuthApi
+    private val api: AuthApi,
+    private val sharedPreferences: SharedPreferences
 ) : AuthRepository {
 
     override suspend fun register(
@@ -44,6 +47,11 @@ class AuthRepositoryImpl(
         return try {
             val response = api.login(request)
             if (response.successful) {
+                response.data?.token?.let { token ->
+                    sharedPreferences.edit()
+                        .putString(Constants.KEY_JWT_TOKEN, token)
+                        .apply()
+                }
                 Resource.Success(Unit)
             } else {
                 response.message?.let { msg ->

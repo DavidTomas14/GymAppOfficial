@@ -105,7 +105,7 @@ fun RegisterScreen(
                     }
                     else -> ""
                 },
-                isPasswordVisible = password.isVisible,
+                isPasswordVisible = registerState.isPasswordVisible,
                 onToggleClickChange = {
                     registerViewModel.onEvent(RegisterEvent.TogglePasswordVisibility)
                 },
@@ -123,7 +123,7 @@ fun RegisterScreen(
                 hint = stringResource(
                     id = R.string.confirma_contrasena
                 ),
-                isPasswordVisible = password.isVisible,
+                isPasswordVisible = registerState.isPasswordVisible,
                 onValueChange = {
                     registerViewModel.onEvent(RegisterEvent.EnteredRepeatedPassword(it))
                 }

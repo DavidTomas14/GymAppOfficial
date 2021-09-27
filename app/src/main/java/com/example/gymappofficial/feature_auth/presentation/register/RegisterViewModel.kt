@@ -24,8 +24,8 @@ class RegisterViewModel @Inject constructor(
     private val _usernameState = mutableStateOf(StandardTextFieldState())
     val usernameState: State<StandardTextFieldState> = _usernameState
 
-    private val _passwordState = mutableStateOf(PasswordTextFieldState())
-    val passwordState: State<PasswordTextFieldState> = _passwordState
+    private val _passwordState = mutableStateOf(StandardTextFieldState())
+    val passwordState: State<StandardTextFieldState> = _passwordState
 
     private val _repeatedPassword = mutableStateOf(StandardTextFieldState())
     val repeatedPassword: State<StandardTextFieldState> = _repeatedPassword
@@ -54,8 +54,8 @@ class RegisterViewModel @Inject constructor(
                 )
             }
             is RegisterEvent.TogglePasswordVisibility -> {
-                _passwordState.value = _passwordState.value.copy(
-                    isVisible = !passwordState.value.isVisible
+                _registerState.value = registerState.value.copy(
+                    isPasswordVisible = !registerState.value.isPasswordVisible
                 )
             }
             is RegisterEvent.Register -> {
