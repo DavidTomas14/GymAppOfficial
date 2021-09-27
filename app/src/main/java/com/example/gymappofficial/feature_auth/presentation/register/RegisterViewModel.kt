@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.gymappofficial.R
 import com.example.gymappofficial.core.domain.states.PasswordTextFieldState
 import com.example.gymappofficial.core.domain.states.StandardTextFieldState
+import com.example.gymappofficial.core.presentation.util.UiEvent
 import com.example.gymappofficial.core.util.Resource
 import com.example.gymappofficial.core.util.UiText
 import com.example.gymappofficial.feature_auth.domain.use_case.RegisterUseCase
@@ -106,10 +107,6 @@ class RegisterViewModel @Inject constructor(
 
         }
 
-    }
-
-    sealed class UiEvent {
-        data class SnackBarEvent(val uiText: UiText) : UiEvent()
     }
 
 }

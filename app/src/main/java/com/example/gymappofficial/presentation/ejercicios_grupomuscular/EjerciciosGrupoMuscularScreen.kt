@@ -42,7 +42,7 @@ fun EjerciciosGrupoMuscularScreen(
             floatingActionButton = {
                 FloatingActionButton(
                     onClick = {
-                        navController.navigate(Screen.AddEjercicioScreen.route)
+                        navController.navigate(Screen.AddExerciseScreen.route)
                     },
                     backgroundColor = CursorBotones,
                 ) {
@@ -152,7 +152,7 @@ fun ListaEjercicios(
                     TextWhite
                 },
                 onClick = {
-                    navController.navigate(Screen.InfoEjercicioScreen.route + "/${ejercicios[index].id}")
+                    navController.navigate(Screen.ExerciseInfoScreen.route + "/${ejercicios[index].id}")
                 }
             )
         }

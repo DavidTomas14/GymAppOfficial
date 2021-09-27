@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import com.example.gymappofficial.feature_auth.data.remote.AuthApi
 import com.example.gymappofficial.feature_auth.data.repository.AuthRepositoryImpl
 import com.example.gymappofficial.feature_auth.domain.repository.AuthRepository
+import com.example.gymappofficial.feature_auth.domain.use_case.AuthenticateUseCase
 import com.example.gymappofficial.feature_auth.domain.use_case.LoginUseCase
 import com.example.gymappofficial.feature_auth.domain.use_case.RegisterUseCase
 import dagger.Module
@@ -21,7 +22,7 @@ object AuthModule {
 
     @Provides
     @Singleton
-    fun provideApi(client: OkHttpClient) : AuthApi {
+    fun provideAuthApi(client: OkHttpClient) : AuthApi {
         return Retrofit.Builder()
             .baseUrl(AuthApi.BASE_URL)
             .client(client)
@@ -42,10 +43,15 @@ object AuthModule {
     fun provideRegisterUseCase(repository: AuthRepository): RegisterUseCase {
         return RegisterUseCase(repository)
     }
-
     @Provides
     @Singleton
     fun provideLoginUseCase(repository: AuthRepository): LoginUseCase {
         return LoginUseCase(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAuthenticationUseCase(repository: AuthRepository): AuthenticateUseCase {
+        return AuthenticateUseCase(repository)
     }
 }

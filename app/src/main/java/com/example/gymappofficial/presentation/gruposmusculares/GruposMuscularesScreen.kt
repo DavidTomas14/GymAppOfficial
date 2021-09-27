@@ -12,7 +12,6 @@ import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -183,7 +182,7 @@ fun GuposMuscularesSection(gruposMusculares: List<GrupoMuscular>, navController:
         ) {
             items(gruposMusculares.size) {
                 GrupoMuscularItem(grupoMuscular = gruposMusculares[it]) { nombreGrupoMuscular->
-                    navController.navigate(Screen.EjerciciosGrupoMuscularScreen.route + "/" + nombreGrupoMuscular)
+                    navController.navigate(Screen.MuscularGroupExercisesScreen.route + "/" + nombreGrupoMuscular)
                 }
             }
         }

@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.ScaffoldState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Edit
@@ -32,26 +31,26 @@ class MainActivity : ComponentActivity() {
                 StandardScaffold(
                     navController = navController,
                     showBottonBar = navBackStackEntry?.destination?.route in listOf(
-                        Screen.InfoEjercicioScreen.route,
-                        Screen.HistorialEjercicioScreen.route,
+                        Screen.ExerciseInfoScreen.route,
+                        Screen.ExerciseHistoryScreen.route,
                     ),
                     iconFAB = when (navBackStackEntry?.destination?.route) {
-                        Screen.InfoEjercicioScreen.route -> Icons.Default.Edit
-                        Screen.HistorialEjercicioScreen.route -> Icons.Default.Add
+                        Screen.ExerciseInfoScreen.route -> Icons.Default.Edit
+                        Screen.ExerciseHistoryScreen.route -> Icons.Default.Add
                         else -> null
                     },
                     state = scaffoldState,
                     showFAB = navBackStackEntry?.destination?.route in listOf(
-                        Screen.InfoEjercicioScreen.route,
-                        Screen.HistorialEjercicioScreen.route
+                        Screen.ExerciseInfoScreen.route,
+                        Screen.ExerciseHistoryScreen.route
                     ),
                     modifier = Modifier.fillMaxSize(),
                     onFabClick = {
                         when (navBackStackEntry?.destination?.route) {
-                            Screen.InfoEjercicioScreen.route -> {
+                            Screen.ExerciseInfoScreen.route -> {
 
                             }
-                            Screen.HistorialEjercicioScreen.route -> {
+                            Screen.ExerciseHistoryScreen.route -> {
 
                             }
                             else -> null

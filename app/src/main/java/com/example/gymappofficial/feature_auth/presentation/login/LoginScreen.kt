@@ -18,6 +18,7 @@ import com.example.gymappofficial.R
 import com.example.gymappofficial.presentation.components.SpannableClickableText
 import com.example.gymappofficial.presentation.components.StandardTextField
 import com.example.gymappofficial.core.presentation.ui.theme.*
+import com.example.gymappofficial.core.presentation.util.UiEvent
 import com.example.gymappofficial.core.presentation.util.asString
 import com.example.gymappofficial.core.util.Screen
 import com.example.gymappofficial.feature_auth.domain.models.AuthError
@@ -37,13 +38,13 @@ fun LoginScreen(
     LaunchedEffect(key1 = true) {
         loginviewModel.eventFlow.collectLatest { event ->
             when (event) {
-                is LoginViewModel.UiEvent.SnackBarEvent -> {
+                is UiEvent.SnackBarEvent -> {
                     scaffoldState.snackbarHostState.showSnackbar(
                         event.uiText.asString(context),
                         duration = SnackbarDuration.Short
                     )
                 }
-                is LoginViewModel.UiEvent.Navigate -> {
+                is UiEvent.Navigate -> {
                     navController.popBackStack()
                     navController.navigate(event.route)
                 }

@@ -74,7 +74,7 @@ fun AddEjercicioScreen(
         Spacer(modifier = Modifier.height(PaddingMedium))
 
         Button(
-            onClick = { navController.navigate(Screen.InfoEjercicioScreen.route)},
+            onClick = { navController.navigate(Screen.ExerciseInfoScreen.route)},
             modifier = Modifier.align(Alignment.End)
             ) {
             Text(

@@ -15,7 +15,7 @@ import com.example.gymappofficial.presentation.historial_ejercicio.HistorialEjer
 import com.example.gymappofficial.presentation.info_ejercicio.InfoEjercicioScreen
 import com.example.gymappofficial.feature_auth.presentation.login.LoginScreen
 import com.example.gymappofficial.feature_auth.presentation.register.RegisterScreen
-import com.example.gymappofficial.presentation.splash.SplashScreen
+import com.example.gymappofficial.feature_auth.presentation.splash.SplashScreen
 @Composable
 fun Navigation(
     navController: NavHostController,
@@ -40,11 +40,11 @@ fun Navigation(
                 scaffoldState = scaffoldState
             )
         }
-        composable(Screen.GruposMuscularesScreen.route) {
+        composable(Screen.MuscularGroupScreen.route) {
             GruposMuscularesScreen(navController = navController)
         }
         composable(
-            route = Screen.EjerciciosGrupoMuscularScreen.route + "/{nombre_grupo_muscular}",
+            route = Screen.MuscularGroupExercisesScreen.route + "/{nombre_grupo_muscular}",
             arguments = listOf(
                 navArgument("nombre_grupo_muscular") {
                     type = NavType.StringType
@@ -56,12 +56,12 @@ fun Navigation(
             EjerciciosGrupoMuscularScreen(navController = navController, scaffoldState= scaffoldState, grupoMuscular = backStackEntry.arguments?.getString("nombre_grupo_muscular"))
         }
 
-        composable(Screen.AddEjercicioScreen.route) {
+        composable(Screen.AddExerciseScreen.route) {
             AddEjercicioScreen(navController = navController)
         }
 
         composable(
-            route = Screen.InfoEjercicioScreen.route + "/{id_ejercicio}",
+            route = Screen.ExerciseInfoScreen.route + "/{id_ejercicio}",
             arguments = listOf(
                 navArgument("id_ejercicio"){
                     type = NavType.StringType
@@ -73,7 +73,7 @@ fun Navigation(
             InfoEjercicioScreen(navController = navController,scaffoldState= scaffoldState, idEjercicio = backstackEntry.arguments?.getString("id_ejercicio"))
         }
 
-        composable(Screen.HistorialEjercicioScreen.route) {
+        composable(Screen.ExerciseHistoryScreen.route) {
             HistorialEjercicioScreen(navController = navController)
         }
 

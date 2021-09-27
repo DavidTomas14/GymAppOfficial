@@ -2,7 +2,7 @@ package com.example.gymappofficial.core.util
 
 object Constants {
 
-    const val SPLASH_SCREEN_DURATION = 3000L
+    const val SPLASH_SCREEN_DURATION = 2000L
 
     val FRASES_MOTIVADORAS = listOf<String>(
         "Animo crack que tu puedes con todo",

@@ -4,16 +4,12 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.gymappofficial.R
-import com.example.gymappofficial.core.domain.states.PasswordTextFieldState
 import com.example.gymappofficial.core.domain.states.StandardTextFieldState
+import com.example.gymappofficial.core.presentation.util.UiEvent
 import com.example.gymappofficial.core.util.Resource
 import com.example.gymappofficial.core.util.Screen
 import com.example.gymappofficial.core.util.UiText
-import com.example.gymappofficial.feature_auth.domain.models.LoginResult
 import com.example.gymappofficial.feature_auth.domain.use_case.LoginUseCase
-import com.example.gymappofficial.feature_auth.presentation.register.RegisterState
-import com.example.gymappofficial.feature_auth.presentation.register.RegisterViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -89,7 +85,7 @@ class LoginViewModel @Inject constructor(
                 }
                 is Resource.Success -> {
                     _eventFlow.emit(
-                        UiEvent.Navigate(Screen.GruposMuscularesScreen.route)
+                        UiEvent.Navigate(Screen.MuscularGroupScreen.route)
                     )
                     _loginState.value = LoginState(isLoading = false)
                 }
@@ -98,9 +94,6 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    sealed class UiEvent {
-        data class SnackBarEvent(val uiText: UiText) : UiEvent()
-        data class Navigate(val route: String) : UiEvent()
-    }
+
 
 }

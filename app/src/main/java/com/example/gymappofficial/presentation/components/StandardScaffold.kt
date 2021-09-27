@@ -34,12 +34,12 @@ fun StandardScaffold(
     grupoMuscularActual: String? = null,
     bottomNavItems: List<BottomNavItem> = listOf(
         BottomNavItem(
-            route = Screen.InfoEjercicioScreen.route,
+            route = Screen.ExerciseInfoScreen.route,
             icon = Icons.Outlined.Home,
             contentDescription = "Home"
         ),
         BottomNavItem(
-            route = Screen.HistorialEjercicioScreen.route,
+            route = Screen.ExerciseHistoryScreen.route,
             icon = Icons.Filled.Timeline,
             contentDescription = "Historial"
         )
@@ -65,8 +65,8 @@ fun StandardScaffold(
                     },
                     navigationIcon = {
                         IconButton(onClick = {
-                            navController.navigate(Screen.EjerciciosGrupoMuscularScreen.route + "/" + grupoMuscularActual) {
-                              popUpTo(Screen.InfoEjercicioScreen.route){inclusive = true}
+                            navController.navigate(Screen.MuscularGroupExercisesScreen.route + "/" + grupoMuscularActual) {
+                              popUpTo(Screen.ExerciseInfoScreen.route){inclusive = true}
                             }
 
                            /* when (navBackStackEntry?.destination?.route) {

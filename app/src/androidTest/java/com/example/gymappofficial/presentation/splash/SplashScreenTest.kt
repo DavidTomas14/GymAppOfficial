@@ -8,6 +8,7 @@ import com.example.gymappofficial.core.presentation.MainActivity
 import com.example.gymappofficial.core.presentation.ui.theme.GymAppOfficialTheme
 import com.example.gymappofficial.core.util.Screen
 import com.example.gymappofficial.core.util.Constants
+import com.example.gymappofficial.feature_auth.presentation.splash.SplashScreen
 import io.mockk.MockKAnnotations
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.verify
