@@ -14,31 +14,29 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.gymappofficial.domain.models.Ejercicio
-import com.example.gymappofficial.presentation.ui.theme.*
+import com.example.gymappofficial.core.domain.models.Ejercicio
+import com.example.gymappofficial.core.presentation.ui.theme.*
 import com.example.gymappofficial.R
 import com.example.gymappofficial.presentation.components.StandardScaffold
-import com.example.gymappofficial.presentation.ui.util.Screen
-import timber.log.Timber
+import com.example.gymappofficial.core.util.Screen
 
 @Composable
 fun EjerciciosGrupoMuscularScreen(
     navController: NavController,
+    scaffoldState: ScaffoldState,
     ejerciciosGrupoMuscularViewModel: EjerciciosGrupoMuscularViewModel = hiltViewModel(),
     grupoMuscular: String?
 ) {
     StandardScaffold(
         navController = navController,
         showToolbar = true,
-        toolbarTitle = grupoMuscular
+        toolbarTitle = grupoMuscular,
+        state = scaffoldState
     ) {
         Scaffold(
             floatingActionButton = {

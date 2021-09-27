@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.gymappofficial.presentation.components.StandardScaffold
-import com.example.gymappofficial.presentation.ui.theme.*
+import com.example.gymappofficial.core.presentation.ui.theme.*
 import com.example.gymappofficial.R
 import timber.log.Timber
 
@@ -26,6 +26,7 @@ import timber.log.Timber
 @Composable
 fun InfoEjercicioScreen(
     navController: NavController,
+    scaffoldState: ScaffoldState,
     idEjercicio: String?,
     infoEjercicioScreenViewModel: InfoEjercicioScreenViewModel = hiltViewModel()
 ) {
@@ -34,7 +35,8 @@ fun InfoEjercicioScreen(
         navController = navController,
         showToolbar = true,
         toolbarTitle = ejercicio.nombre,
-        grupoMuscularActual = ejercicio.grupoMuscular
+        grupoMuscularActual = ejercicio.grupoMuscular,
+        state = scaffoldState
     ) {
         Box(
             modifier = Modifier

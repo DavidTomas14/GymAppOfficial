@@ -1,13 +1,9 @@
 package com.example.gymappofficial.presentation.addejercicio
 
-import androidx.compose.animation.AnimatedContentScope.SlideDirection.Companion.End
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,11 +15,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.gymappofficial.R
 import com.example.gymappofficial.presentation.components.StandardTextField
-import com.example.gymappofficial.presentation.ui.theme.Gray
-import com.example.gymappofficial.presentation.ui.theme.PaddingMedium
-import com.example.gymappofficial.presentation.ui.theme.PaddingSmall
-import com.example.gymappofficial.presentation.ui.theme.Shapes
-import com.example.gymappofficial.presentation.ui.util.Screen
+import com.example.gymappofficial.core.presentation.ui.theme.Gray
+import com.example.gymappofficial.core.presentation.ui.theme.PaddingMedium
+import com.example.gymappofficial.core.presentation.ui.theme.PaddingSmall
+import com.example.gymappofficial.core.presentation.ui.theme.Shapes
+import com.example.gymappofficial.core.util.Screen
 
 @Composable
 fun AddEjercicioScreen(

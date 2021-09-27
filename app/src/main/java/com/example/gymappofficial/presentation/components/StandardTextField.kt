@@ -2,7 +2,6 @@ package com.example.gymappofficial.presentation.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -11,11 +10,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
@@ -25,8 +20,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import com.example.gymappofficial.R
-import com.example.gymappofficial.presentation.ui.util.TestTags.PASSWORD_TOGGLE
-import com.example.gymappofficial.presentation.ui.util.TestTags.STANDARD_TEXT_FIELD
+import com.example.gymappofficial.core.util.TestTags.PASSWORD_TOGGLE
+import com.example.gymappofficial.core.util.TestTags.STANDARD_TEXT_FIELD
 
 @Composable
 fun StandardTextField(

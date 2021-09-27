@@ -18,7 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
-import com.example.gymappofficial.presentation.ui.theme.PaddingSmall
+import com.example.gymappofficial.core.presentation.ui.theme.PaddingSmall
 
 @Composable
 fun RowScope.StandardBottomNavItem(

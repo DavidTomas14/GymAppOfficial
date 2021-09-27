@@ -22,5 +22,14 @@
     <string name="video">Video</string>
     <string name="editar_ejercicio">Editar Ejercicio</string>
     <string name="arrow_back">Arrow Back</string>
+    <string name="this_field_cant_be_empty">There cant be empty fields</string>
+    <string name="the_username_is_too_short">The username is too short</string>
+    <string name="the_password_is_too_short">The password is too short</string>
+    <string name="invalid_password_entered">The password must contain a number and capital letter</string>
+    <string name="passwords_dont_match">The passwords dont match</string>
+    <string name="error_unkown">Unknown Error</string>
+    <string name="error_couldnt_reach_server">Oops! Couldnt reach server. Chech your internet connection.</string>
+    <string name="error_oops_something_went_wrong">Oops! Something went wrong. Please try again.</string>
+    <string name="success_registration">Successfully registered an account. You can log in now!</string>
 
 </resources>

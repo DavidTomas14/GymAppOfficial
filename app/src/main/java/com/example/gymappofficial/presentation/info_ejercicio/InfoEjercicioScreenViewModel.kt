@@ -3,7 +3,7 @@ package com.example.gymappofficial.presentation.info_ejercicio
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.example.gymappofficial.domain.models.Ejercicio
+import com.example.gymappofficial.core.domain.models.Ejercicio
 import javax.inject.Inject
 
 class InfoEjercicioScreenViewModel @Inject constructor() : ViewModel() {

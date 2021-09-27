@@ -2,9 +2,7 @@ package com.example.gymappofficial.presentation.components
 
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
@@ -12,10 +10,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.gymappofficial.R
-import com.example.gymappofficial.presentation.ui.theme.CursorBotones
-import com.example.gymappofficial.presentation.ui.theme.TextWhite
-import com.example.gymappofficial.presentation.ui.util.Screen
+import com.example.gymappofficial.core.presentation.ui.theme.CursorBotones
+import com.example.gymappofficial.core.presentation.ui.theme.TextWhite
 
 @Composable
 fun SpannableClickableText(

@@ -1,32 +1,24 @@
 package com.example.gymappofficial.presentation.components
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.OndemandVideo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.gymappofficial.R
-import com.example.gymappofficial.domain.models.BottomNavItem
-import com.example.gymappofficial.presentation.ui.theme.CursorBotones
-import com.example.gymappofficial.presentation.ui.theme.Gray
-import com.example.gymappofficial.presentation.ui.theme.LightGray
-import com.example.gymappofficial.presentation.ui.util.Screen
+import com.example.gymappofficial.core.domain.models.BottomNavItem
+import com.example.gymappofficial.core.presentation.ui.theme.*
+import com.example.gymappofficial.core.util.Screen
 
 
 @Composable
@@ -34,6 +26,7 @@ fun StandardScaffold(
     modifier: Modifier = Modifier,
     navController: NavController,
     showBottonBar: Boolean = false,
+    state: ScaffoldState,
     showToolbar: Boolean = false,
     toolbarTitle: String? = null,
     showFAB: Boolean = false,
@@ -124,7 +117,7 @@ fun StandardScaffold(
                 }
             }
         },
-
+        scaffoldState = state,
         floatingActionButton = {
             if (showFAB) {
                 FloatingActionButton(
@@ -143,6 +136,16 @@ fun StandardScaffold(
         },
         isFloatingActionButtonDocked = true,
         floatingActionButtonPosition = FabPosition.Center,
+        snackbarHost = {
+            SnackbarHost(it){data->
+                Snackbar(
+                    contentColor = TextWhite,
+                    backgroundColor = DarkGray,
+                    snackbarData = data
+                )
+            }
+
+        }
     ) {
         content()
     }

@@ -2,7 +2,6 @@ package com.example.gymappofficial.presentation.gruposmusculares
 
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -13,9 +12,8 @@ import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.*
@@ -27,16 +25,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.gymappofficial.domain.models.GrupoMuscular
-import com.example.gymappofficial.presentation.ui.theme.*
+import com.example.gymappofficial.core.domain.models.GrupoMuscular
+import com.example.gymappofficial.core.presentation.ui.theme.*
 import java.text.SimpleDateFormat
 import kotlin.random.Random
 import com.example.gymappofficial.R
-import com.example.gymappofficial.presentation.ui.util.Screen
-import com.example.gymappofficial.presentation.util.Constants.FRASES_MOTIVADORAS
+import com.example.gymappofficial.core.util.Screen
+import com.example.gymappofficial.core.util.Constants.FRASES_MOTIVADORAS
 import com.example.gymappofficial.presentation.util.standardQuadFromTo
 import timber.log.Timber
 

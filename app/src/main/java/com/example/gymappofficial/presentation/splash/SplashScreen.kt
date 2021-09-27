@@ -1,7 +1,6 @@
 package com.example.gymappofficial.presentation.splash
 
 import android.view.animation.OvershootInterpolator
-import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
@@ -14,11 +13,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.example.gymappofficial.R
-import com.example.gymappofficial.presentation.ui.util.Screen
-import com.example.gymappofficial.presentation.util.Constants
+import com.example.gymappofficial.core.util.Screen
+import com.example.gymappofficial.core.util.Constants
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay

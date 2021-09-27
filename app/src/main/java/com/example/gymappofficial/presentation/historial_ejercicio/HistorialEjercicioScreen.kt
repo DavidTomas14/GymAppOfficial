@@ -7,8 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import com.example.gymappofficial.presentation.components.StandardScaffold
-import com.example.gymappofficial.presentation.ui.util.Screen
 
 @Composable
 fun HistorialEjercicioScreen(
