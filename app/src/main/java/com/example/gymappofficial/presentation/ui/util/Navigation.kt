@@ -7,12 +7,14 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
+import com.example.gymappofficial.core.util.Constants.NAVARG_EXERCISE_ID
+import com.example.gymappofficial.core.util.Constants.NAVARG_MUSCULAR_GROUP
 import com.example.gymappofficial.core.util.Screen
-import com.example.gymappofficial.presentation.addejercicio.AddEjercicioScreen
-import com.example.gymappofficial.presentation.ejercicios_grupomuscular.EjerciciosGrupoMuscularScreen
-import com.example.gymappofficial.presentation.gruposmusculares.GruposMuscularesScreen
-import com.example.gymappofficial.presentation.historial_ejercicio.HistorialEjercicioScreen
-import com.example.gymappofficial.presentation.info_ejercicio.InfoEjercicioScreen
+import com.example.gymappofficial.feature_exercises.presentation.add_exercise.AddEjercicioScreen
+import com.example.gymappofficial.feature_exercises.presentation.exersises_muscular_group.ExercisesMuscularGroupScreen
+import com.example.gymappofficial.feature_home_screen.presentation.GruposMuscularesScreen
+import com.example.gymappofficial.feature_weights.presentation.historial_ejercicio.HistorialEjercicioScreen
+import com.example.gymappofficial.feature_exercises.presentation.exercise_info.InfoEjercicioScreen
 import com.example.gymappofficial.feature_auth.presentation.login.LoginScreen
 import com.example.gymappofficial.feature_auth.presentation.register.RegisterScreen
 import com.example.gymappofficial.feature_auth.presentation.splash.SplashScreen
@@ -44,16 +46,17 @@ fun Navigation(
             GruposMuscularesScreen(navController = navController)
         }
         composable(
-            route = Screen.MuscularGroupExercisesScreen.route + "/{nombre_grupo_muscular}",
+            route = Screen.MuscularGroupExercisesScreen.route + "/{$NAVARG_MUSCULAR_GROUP}",
             arguments = listOf(
-                navArgument("nombre_grupo_muscular") {
+                navArgument(NAVARG_MUSCULAR_GROUP) {
                     type = NavType.StringType
                     defaultValue = ""
                     nullable = false
                 }
             ),
         ) { backStackEntry ->
-            EjerciciosGrupoMuscularScreen(navController = navController, scaffoldState= scaffoldState, grupoMuscular = backStackEntry.arguments?.getString("nombre_grupo_muscular"))
+            ExercisesMuscularGroupScreen(navController = navController, scaffoldState= scaffoldState, muscularGroup = backStackEntry.arguments?.getString(
+                NAVARG_MUSCULAR_GROUP))
         }
 
         composable(Screen.AddExerciseScreen.route) {
@@ -61,20 +64,20 @@ fun Navigation(
         }
 
         composable(
-            route = Screen.ExerciseInfoScreen.route + "/{id_ejercicio}",
+            route = Screen.ExerciseInfoScreen.route + "/{${NAVARG_EXERCISE_ID}}",
             arguments = listOf(
-                navArgument("id_ejercicio"){
+                navArgument(NAVARG_EXERCISE_ID){
                     type = NavType.StringType
                     defaultValue = ""
                     nullable = false
                 }
             )
         ) { backstackEntry ->
-            InfoEjercicioScreen(navController = navController,scaffoldState= scaffoldState, idEjercicio = backstackEntry.arguments?.getString("id_ejercicio"))
+            InfoEjercicioScreen(navController = navController,scaffoldState= scaffoldState)
         }
 
         composable(Screen.ExerciseHistoryScreen.route) {
-            HistorialEjercicioScreen(navController = navController)
+            HistorialEjercicioScreen(navController = navController, scaffoldState = scaffoldState)
         }
 
     }

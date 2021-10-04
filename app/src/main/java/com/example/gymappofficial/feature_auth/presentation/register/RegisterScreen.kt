@@ -15,8 +15,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.gymappofficial.R
-import com.example.gymappofficial.presentation.components.SpannableClickableText
-import com.example.gymappofficial.presentation.components.StandardTextField
+import com.example.gymappofficial.core.presentation.components.SpannableClickableText
+import com.example.gymappofficial.core.presentation.components.StandardTextField
 import com.example.gymappofficial.core.presentation.ui.theme.*
 import com.example.gymappofficial.core.presentation.util.UiEvent
 import com.example.gymappofficial.core.presentation.util.asString

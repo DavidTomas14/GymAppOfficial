@@ -32,5 +32,6 @@
     <string name="error_oops_something_went_wrong">Oops! Something went wrong. Please try again.</string>
     <string name="success_registration">Successfully registered an account. You can log in now!</string>
     <string name="success_login">Successfully Logged in!!</string>
+    <string name="exercise_successfully_updated">Exercise successfully updated!</string>
 
 </resources>
