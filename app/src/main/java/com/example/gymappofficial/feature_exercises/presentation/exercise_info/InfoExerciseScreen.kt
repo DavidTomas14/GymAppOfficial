@@ -37,6 +37,7 @@ fun InfoEjercicioScreen(
 ) {
     val exercise = infoEjercicioScreenViewModel.exercise.value ?: return
     val isLoading = infoEjercicioScreenViewModel.isLoading.value ?: false
+    val maxWeight = infoEjercicioScreenViewModel.maxWeight.value.toString()
     val context = LocalContext.current
 
     LaunchedEffect(key1 = true) {
@@ -60,7 +61,6 @@ fun InfoEjercicioScreen(
         showToolbar = true,
         showFAB = true,
         toolbarTitle = exercise.name,
-        grupoMuscularActual = exercise.muscularGroup.route,
         state = scaffoldState,
         onFabClick = {
             infoEjercicioScreenViewModel.onEvent(InfoExerciseEvents.UpdateExercise)
@@ -85,7 +85,7 @@ fun InfoEjercicioScreen(
                         }
                     )
                     Spacer(modifier = Modifier.height(PaddingMedium))
-                    TextMaxPeso("") //ejercicio.listaPesos.maxOfOrNull{it}.toString()
+                    TextMaxWeight(maxWeight) //ejercicio.listaPesos.maxOfOrNull{it}.toString()
                     Spacer(modifier = Modifier.height(PaddingMedium))
                     SubidaPeso(
                         exercise.increasingWeightValoration,
@@ -126,7 +126,7 @@ fun TextoDescripcion(
 }
 
 @Composable
-fun TextMaxPeso(
+fun TextMaxWeight(
     maxPeso: String
 ) {
     Column(
@@ -138,7 +138,7 @@ fun TextMaxPeso(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Peso Actual",
+            text = "Max Weight",
             style = MaterialTheme.typography.h2,
             modifier = Modifier.padding(vertical = 10.dp)
         )
@@ -166,7 +166,7 @@ fun SubidaPeso(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Subida de Peso",
+            text = "Increasing Weight",
             style = MaterialTheme.typography.h2,
             modifier = Modifier.padding(vertical = 15.dp)
         )
@@ -208,7 +208,7 @@ fun SubidaPeso(
             value = comentarioSubidaDePeso,
             label = {
                 Text(
-                    text = "Comentario...",
+                    text = "Comments...",
                     style = MaterialTheme.typography.body2,
                     color = LightGray
                 )

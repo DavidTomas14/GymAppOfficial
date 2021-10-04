@@ -1,14 +1,14 @@
 package com.example.gymappofficial.feature_exercises.presentation.add_exercise
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -19,13 +19,37 @@ import com.example.gymappofficial.core.presentation.ui.theme.Gray
 import com.example.gymappofficial.core.presentation.ui.theme.PaddingMedium
 import com.example.gymappofficial.core.presentation.ui.theme.PaddingSmall
 import com.example.gymappofficial.core.presentation.ui.theme.Shapes
-import com.example.gymappofficial.core.util.Screen
+import com.example.gymappofficial.core.presentation.util.UiEvent
+import com.example.gymappofficial.core.presentation.util.asString
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun AddEjercicioScreen(
     navController: NavController,
-    addEjercicioScreenViewModel: AddEjercicioScreenViewModel = hiltViewModel()
+    scaffoldState: ScaffoldState,
+    addEjercicioScreenViewModel: AddExerciseViewModel = hiltViewModel(),
+    muscularGroup: String?
 ) {
+    val state = addEjercicioScreenViewModel.state.value
+    val eventFlow = addEjercicioScreenViewModel.eventFlow
+    val context = LocalContext.current
+
+    LaunchedEffect(key1 = true) {
+        eventFlow.collectLatest { event ->
+            when (event) {
+                is UiEvent.SnackBarEvent -> {
+                    scaffoldState.snackbarHostState.showSnackbar(
+                        event.uiText.asString(context),
+                        duration = SnackbarDuration.Short
+                    )
+                }
+                is UiEvent.Navigate -> {
+                    navController.navigateUp()
+                }
+            }
+
+        }
+    }
     Column(
         modifier = Modifier
             .padding(PaddingSmall)
@@ -40,11 +64,12 @@ fun AddEjercicioScreen(
 
         StandardTextField(
             modifierTextField = Modifier.clip(Shapes.medium),
+            maxLength = 30,
             color = Gray,
             hint = stringResource(id = R.string.nombre),
-            text = addEjercicioScreenViewModel.nombreEjercicio.value,
+            text = state.name,
             onValueChange = {
-                addEjercicioScreenViewModel.setNombre(it)
+                addEjercicioScreenViewModel.onEvent(AddExerciseEvent.EnteredName(it))
             }
         )
 
@@ -64,9 +89,9 @@ fun AddEjercicioScreen(
                 maxLines = 5,
                 color = Gray,
                 hint = stringResource(id = R.string.decripcion),
-                text = addEjercicioScreenViewModel.descripcionEjercicio.value,
+                text = state.description,
                 onValueChange = {
-                    addEjercicioScreenViewModel.setDescripcion(it)
+                    addEjercicioScreenViewModel.onEvent(AddExerciseEvent.EnteredDescription(it))
                 }
             )
         }
@@ -74,9 +99,12 @@ fun AddEjercicioScreen(
         Spacer(modifier = Modifier.height(PaddingMedium))
 
         Button(
-            onClick = { navController.navigate(Screen.ExerciseInfoScreen.route)},
+            onClick = {
+                val muscularGroup = muscularGroup
+                addEjercicioScreenViewModel.onEvent(AddExerciseEvent.Create(muscularGroup ?: ""))
+            },
             modifier = Modifier.align(Alignment.End)
-            ) {
+        ) {
             Text(
                 text = stringResource(id = R.string.guardar),
                 style = MaterialTheme.typography.body1,

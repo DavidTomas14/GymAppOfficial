@@ -4,10 +4,7 @@ import com.example.gymappofficial.feature_exercises.data.remote.ExercisesApi
 import com.example.gymappofficial.feature_exercises.data.remote.ExercisesApi.Companion.BASE_URL
 import com.example.gymappofficial.feature_exercises.data.repository.ExerciseRepositoryImpl
 import com.example.gymappofficial.feature_exercises.domain.repository.ExercisesRepository
-import com.example.gymappofficial.feature_exercises.domain.use_case.DeleteExerciseByIdUseCase
-import com.example.gymappofficial.feature_exercises.domain.use_case.GetExerciseByIdUseCase
-import com.example.gymappofficial.feature_exercises.domain.use_case.GetExercisesByMuscularGroupUseCase
-import com.example.gymappofficial.feature_exercises.domain.use_case.UpdateExerciseUseCase
+import com.example.gymappofficial.feature_exercises.domain.use_case.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -52,6 +49,12 @@ object ExercisesModule {
 
     @Provides
     @Singleton
+    fun provideAddExerciseUseCase(repository: ExercisesRepository): AddExerciseUseCase{
+        return AddExerciseUseCase(repository)
+    }
+
+    @Provides
+    @Singleton
     fun provideUpdateExerciseUsecase(repository: ExercisesRepository): UpdateExerciseUseCase{
         return UpdateExerciseUseCase(repository)
     }
@@ -60,6 +63,17 @@ object ExercisesModule {
     @Singleton
     fun provideDeleteExerciseByIdUseCase(repository: ExercisesRepository): DeleteExerciseByIdUseCase{
         return DeleteExerciseByIdUseCase(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetMaxWeightFromExercise(repository: ExercisesRepository): GetMaxWeightFromExercise{
+        return GetMaxWeightFromExercise(repository)
+    }
+    @Provides
+    @Singleton
+    fun provideGetLastWeightFromExercise(repository: ExercisesRepository): GetLastWeightFromExercise{
+        return GetLastWeightFromExercise(repository)
     }
 
 }

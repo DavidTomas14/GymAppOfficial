@@ -34,7 +34,6 @@ fun StandardScaffold(
     showFAB: Boolean = false,
     showNavIcon: Boolean = true,
     iconFAB: ImageVector? = null,
-    grupoMuscularActual: String? = null,
     bottomNavItems: List<BottomNavItem> = listOf(
         BottomNavItem(
             route = Screen.ExerciseInfoScreen.route + "/{${Constants.NAVARG_EXERCISE_ID}}",

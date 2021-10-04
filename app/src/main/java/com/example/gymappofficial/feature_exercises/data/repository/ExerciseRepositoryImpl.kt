@@ -23,7 +23,7 @@ class ExerciseRepositoryImpl(
     override suspend fun createExercise(
         name: String,
         description: String,
-        muscularGroup: MuscularGroupType
+        muscularGroup: String
     ): SimpleResource {
         val request = CreateExerciseRequest(name, description, muscularGroup)
         return try {
@@ -128,6 +128,36 @@ class ExerciseRepositoryImpl(
             api.deleteExercise(request)
             Resource.Success(Unit)
         } catch (e: IOException) {
+            Resource.Error(
+                UiText.StringResource(R.string.error_couldnt_reach_server)
+            )
+        } catch (e: HttpException) {
+            Resource.Error(
+                UiText.StringResource(R.string.error_oops_something_went_wrong)
+            )
+        }
+    }
+
+    override suspend fun getLastWeightFromExercise(exerciseId: String): Resource<Float> {
+        return try {
+            val response = api.getLastWeightFromExercise(exerciseId)
+            Resource.Success(response.data)
+        }catch (e: IOException) {
+            Resource.Error(
+                UiText.StringResource(R.string.error_couldnt_reach_server)
+            )
+        } catch (e: HttpException) {
+            Resource.Error(
+                UiText.StringResource(R.string.error_oops_something_went_wrong)
+            )
+        }
+    }
+
+    override suspend fun getMaxWeightFromExercise(exerciseId: String): Resource<Float> {
+        return try {
+            val response = api.getMaxWeightFromExercise(exerciseId)
+            Resource.Success(response.data)
+        }catch (e: IOException) {
             Resource.Error(
                 UiText.StringResource(R.string.error_couldnt_reach_server)
             )

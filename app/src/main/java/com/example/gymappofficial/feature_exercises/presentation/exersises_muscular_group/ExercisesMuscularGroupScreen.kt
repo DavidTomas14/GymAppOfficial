@@ -48,6 +48,7 @@ fun ExercisesMuscularGroupScreen(
 ) {
     val exercises = exercisesMuscularGroupViewModel.exercise.value
     val context = LocalContext.current
+    val weightsList = exercisesMuscularGroupViewModel.weightslist.value
     val isLoading = exercisesMuscularGroupViewModel.state.value.isLoading
 
     LaunchedEffect(key1 = true) {
@@ -63,6 +64,10 @@ fun ExercisesMuscularGroupScreen(
         }
     }
 
+    LaunchedEffect(key1 = true) {
+        exercisesMuscularGroupViewModel.getExercises()
+    }
+
     StandardScaffold(
         navController = navController,
         showToolbar = true,
@@ -73,12 +78,12 @@ fun ExercisesMuscularGroupScreen(
             floatingActionButton = {
                 FloatingActionButton(
                     onClick = {
-                        navController.navigate(Screen.AddExerciseScreen.route)
+                        navController.navigate(Screen.AddExerciseScreen.route + "/$muscularGroup")
                     },
                     backgroundColor = CursorBotones,
                 ) {
                     Icon(
-                        imageVector = Icons.Default.Add,
+                        imageVector = Default.Add,
                         contentDescription = stringResource(id = R.string.addEjercicio),
                         tint = Color.Black
                     )
@@ -104,10 +109,16 @@ fun ExercisesMuscularGroupScreen(
                 Spacer(modifier = Modifier.height(PaddingMedium))
                 ListaEjercicios(
                     exercises = exercises,
-                    navController = navController
-                ){
-                    exercisesMuscularGroupViewModel.onEvent(ExercisesMuscularGroupEvent.SwipedToDelete(it))
-                }
+                    navController = navController,
+                    weightsList = weightsList,
+                    onSwipeEvent = {
+                        exercisesMuscularGroupViewModel.onEvent(
+                            ExercisesMuscularGroupEvent.SwipedToDelete(
+                                it
+                            )
+                        )
+                    }
+                )
             }
         }
     }
@@ -119,7 +130,8 @@ fun ExercisesMuscularGroupScreen(
 fun ListaEjercicios(
     exercises: List<Exercise>,
     navController: NavController,
-    onSwipeEvent: (String)->Unit
+    weightsList: List<Float>,
+    onSwipeEvent: (String) -> Unit,
 ) {
 
     LazyColumn(
@@ -131,19 +143,23 @@ fun ListaEjercicios(
                     if (it == DismissValue.DismissedToEnd) {
                         onSwipeEvent(item.id)
                     }
-                    true
+                    it != DismissValue.DismissedToEnd
                 }
             )
 
             SwipeToDismiss(
                 state = dismissState,
                 directions = setOf(StartToEnd),
+                dismissThresholds =  { FractionalThreshold(0.65f) },
                 background = {
-                    val color = when (dismissState.dismissDirection) {
+
+                    val color by animateColorAsState(
+                        when (dismissState.dismissDirection) {
                         StartToEnd -> Color.Red
                         EndToStart -> Color.Transparent
                         null -> Color.Transparent
                     }
+                    )
                     Box(
                         modifier = Modifier
                             .padding(
@@ -171,6 +187,7 @@ fun ListaEjercicios(
                 dismissContent = {
                     EjercicioItem(
                         exercise = exercises[index],
+                        weight = if (weightsList.isEmpty()) 0f else weightsList[index],
                         color =
                         if (index == 0 || index % 4 == 0) {
                             BlueViolet2
@@ -199,6 +216,7 @@ fun ListaEjercicios(
 @Composable
 fun EjercicioItem(
     exercise: Exercise,
+    weight: Float,
     color: Color,
     onClick: (String) -> Unit
 ) {
@@ -222,20 +240,21 @@ fun EjercicioItem(
             text = exercise.name,
             style = MaterialTheme.typography.body1,
             modifier = Modifier.padding(horizontal = 15.dp, vertical = 18.dp)
-
         )
+        Row() {
+            Text(
+                text = "$weight kg",
+                color = Color.Black,
+                modifier = Modifier
+                    .clip(RoundedCornerShape(5.dp))
+                    .background(LightGray)
+                    .padding(vertical = 5.dp, horizontal = 15.dp),
+                style = MaterialTheme.typography.body1
+            )
 
-        Text(
-            /* text = "${exercise..maxOrNull().toString()} kg",*/
-            text = "27 kg",
-            color = Color.Black,
-            modifier = Modifier
-                .clip(RoundedCornerShape(5.dp))
-                .padding(vertical = 5.dp, horizontal = 8.dp)
-                .background(LightGray),
-            style = MaterialTheme.typography.body1
+            Spacer(modifier = Modifier.width(15.dp))
+        }
 
-        )
         /* Image(
              painter = painterResource(id = if (exercise.isSynced) R.drawable.ic_check else R.drawable.ic_cross),
              contentDescription = "Icon Sync",

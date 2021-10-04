@@ -7,11 +7,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gymappofficial.R
 import com.example.gymappofficial.core.domain.models.Exercise
+import com.example.gymappofficial.core.domain.models.Weight
 import com.example.gymappofficial.core.presentation.util.UiEvent
 import com.example.gymappofficial.core.util.Constants.NAVARG_EXERCISE_ID
 import com.example.gymappofficial.core.util.Resource
 import com.example.gymappofficial.core.util.UiText
 import com.example.gymappofficial.feature_exercises.domain.use_case.GetExerciseByIdUseCase
+import com.example.gymappofficial.feature_exercises.domain.use_case.GetMaxWeightFromExercise
 import com.example.gymappofficial.feature_exercises.domain.use_case.UpdateExerciseUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -22,12 +24,16 @@ import javax.inject.Inject
 @HiltViewModel
 class InfoExerciseViewModel @Inject constructor(
     private val getExerciseByIdUseCase: GetExerciseByIdUseCase,
+    private val getMaxWeightFromExercise: GetMaxWeightFromExercise,
     private val updateExerciseUseCase: UpdateExerciseUseCase,
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val _exercise = mutableStateOf<Exercise?>(null)
     val exercise: State<Exercise?> = _exercise
+
+    private val _maxWeight = mutableStateOf(0f)
+    val maxWeight: State<Float> = _maxWeight
 
     private val _isLoading = mutableStateOf(false)
     val isLoading: State<Boolean?> = _isLoading
@@ -38,6 +44,8 @@ class InfoExerciseViewModel @Inject constructor(
 
     init {
         getExerciseById()
+        getMaxWeight()
+
     }
 
     private fun getExerciseById() {
@@ -52,6 +60,17 @@ class InfoExerciseViewModel @Inject constructor(
                     _eventFlow.emit(
                         UiEvent.SnackBarEvent(response.uiText ?: UiText.unknownError())
                     )
+                }
+            }
+        }
+    }
+    private fun getMaxWeight() {
+        viewModelScope.launch {
+            val exerciseId = savedStateHandle.get<String>(NAVARG_EXERCISE_ID) ?: ""
+            val response = getMaxWeightFromExercise(exerciseId)
+            when (response) {
+                is Resource.Success -> {
+                    _maxWeight.value = response.data!!
                 }
             }
         }

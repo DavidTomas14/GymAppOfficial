@@ -1,6 +1,7 @@
 package com.example.gymappofficial.feature_exercises.data.remote
 
 import com.example.gymappofficial.core.data.dto.response.BasicApiResponse
+import com.example.gymappofficial.core.util.QueryParams
 import com.example.gymappofficial.core.util.QueryParams.PARAM_EXERCISE_ID
 import com.example.gymappofficial.core.util.QueryParams.PARAM_MUSCULAR_GROUP
 import com.example.gymappofficial.feature_exercises.data.models.ExerciseApiModel
@@ -36,6 +37,16 @@ interface ExercisesApi {
     suspend fun deleteExercise(
         @Body request: DeleteRequest
     ): BasicApiResponse<Unit>
+
+    @GET("api/exercise/getmaxWeight")
+    suspend fun getMaxWeightFromExercise(
+        @Query(PARAM_EXERCISE_ID) exerciseId:String
+    ): BasicApiResponse<Float>
+
+    @GET("api/exercise/getlastWeight")
+    suspend fun getLastWeightFromExercise(
+        @Query(PARAM_EXERCISE_ID) exerciseId:String
+    ): BasicApiResponse<Float>
 
     companion object{
         const val BASE_URL = "http://10.0.2.2:8001/"

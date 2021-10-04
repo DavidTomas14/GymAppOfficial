@@ -18,6 +18,7 @@ import com.example.gymappofficial.feature_exercises.presentation.exercise_info.I
 import com.example.gymappofficial.feature_auth.presentation.login.LoginScreen
 import com.example.gymappofficial.feature_auth.presentation.register.RegisterScreen
 import com.example.gymappofficial.feature_auth.presentation.splash.SplashScreen
+
 @Composable
 fun Navigation(
     navController: NavHostController,
@@ -55,25 +56,45 @@ fun Navigation(
                 }
             ),
         ) { backStackEntry ->
-            ExercisesMuscularGroupScreen(navController = navController, scaffoldState= scaffoldState, muscularGroup = backStackEntry.arguments?.getString(
-                NAVARG_MUSCULAR_GROUP))
+            ExercisesMuscularGroupScreen(
+                navController = navController,
+                scaffoldState = scaffoldState,
+                muscularGroup = backStackEntry.arguments?.getString(
+                    NAVARG_MUSCULAR_GROUP
+                )
+            )
         }
 
-        composable(Screen.AddExerciseScreen.route) {
-            AddEjercicioScreen(navController = navController)
+        composable(
+            route = Screen.AddExerciseScreen.route + "/{$NAVARG_MUSCULAR_GROUP}",
+            arguments = listOf(
+                navArgument(NAVARG_MUSCULAR_GROUP) {
+                    type = NavType.StringType
+                    defaultValue = ""
+                    nullable = false
+                }
+            ),
+        ) { backStackEntry ->
+            AddEjercicioScreen(
+                navController = navController,
+                scaffoldState = scaffoldState,
+                muscularGroup = backStackEntry.arguments?.getString(
+                    NAVARG_MUSCULAR_GROUP
+                )
+            )
         }
 
         composable(
             route = Screen.ExerciseInfoScreen.route + "/{${NAVARG_EXERCISE_ID}}",
             arguments = listOf(
-                navArgument(NAVARG_EXERCISE_ID){
+                navArgument(NAVARG_EXERCISE_ID) {
                     type = NavType.StringType
                     defaultValue = ""
                     nullable = false
                 }
             )
         ) { backstackEntry ->
-            InfoEjercicioScreen(navController = navController,scaffoldState= scaffoldState)
+            InfoEjercicioScreen(navController = navController, scaffoldState = scaffoldState)
         }
 
         composable(Screen.ExerciseHistoryScreen.route) {

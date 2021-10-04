@@ -11,7 +11,7 @@ interface ExercisesRepository {
     suspend fun createExercise(
         name: String,
         description: String,
-        muscularGroup: MuscularGroupType
+        muscularGroup: String
     ): SimpleResource
 
     suspend fun getExercisesByMuscularGroup(
@@ -32,4 +32,13 @@ interface ExercisesRepository {
     suspend fun deleteExerciseById(
         exerciseId: String,
     ): SimpleResource
+
+    suspend fun getLastWeightFromExercise(
+        exerciseId: String
+    ): Resource<Float>
+
+
+    suspend fun getMaxWeightFromExercise(
+        exerciseId: String
+    ): Resource<Float>
 }

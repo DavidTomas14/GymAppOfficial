@@ -22,7 +22,6 @@ fun HistorialEjercicioScreen(
         showBottonBar = true,
         showNavIcon = false,
         toolbarTitle = "Historial",
-        grupoMuscularActual = "",
         iconFAB = Icons.Default.Add,
         showFAB = true,
         onFabClick = {
