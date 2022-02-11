@@ -8,10 +8,10 @@
     <application
         android:name=".GymApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_join_gym"
         android:label="@string/app_name"
         android:usesCleartextTraffic="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_join_gym"
         android:supportsRtl="true"
         android:theme="@style/Theme.GymAppOfficial"
         tools:targetApi="m">

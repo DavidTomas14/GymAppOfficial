@@ -3,6 +3,7 @@ package com.example.gymappofficial.di
 import com.example.gymappofficial.feature_weights.data.remote.WeightsApi
 import com.example.gymappofficial.feature_weights.data.repository.WeightRepositoryImpl
 import com.example.gymappofficial.feature_weights.domain.repository.WeightRepository
+import com.example.gymappofficial.feature_weights.domain.use_case.CreateWeightUseCase
 import com.example.gymappofficial.feature_weights.domain.use_case.GetWeightsUseCase
 import dagger.Module
 import dagger.Provides
@@ -38,6 +39,12 @@ object WeightsModule {
     @Singleton
     fun provideGetWeightsUseCase(repository: WeightRepository): GetWeightsUseCase{
         return GetWeightsUseCase(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCreateWeightUseCase(repository: WeightRepository): CreateWeightUseCase{
+        return CreateWeightUseCase(repository)
     }
 
 }

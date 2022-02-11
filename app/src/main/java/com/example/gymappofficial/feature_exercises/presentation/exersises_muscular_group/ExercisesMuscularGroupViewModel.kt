@@ -1,25 +1,18 @@
 package com.example.gymappofficial.feature_exercises.presentation.exersises_muscular_group
 
-import android.content.SharedPreferences
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gymappofficial.core.domain.models.Exercise
-import com.example.gymappofficial.core.domain.models.MuscularGroupType
-import com.example.gymappofficial.core.presentation.util.UiEvent
-import com.example.gymappofficial.core.util.Constants
-import com.example.gymappofficial.core.util.Constants.MUSCULAR_GROUP
+import com.example.gymappofficial.core.presentation.ui.util.UiEvent
 import com.example.gymappofficial.core.util.Constants.NAVARG_MUSCULAR_GROUP
 import com.example.gymappofficial.core.util.Resource
 import com.example.gymappofficial.core.util.UiText
-import com.example.gymappofficial.feature_auth.presentation.login.LoginState
 import com.example.gymappofficial.feature_exercises.domain.use_case.DeleteExerciseByIdUseCase
 import com.example.gymappofficial.feature_exercises.domain.use_case.GetExercisesByMuscularGroupUseCase
 import com.example.gymappofficial.feature_exercises.domain.use_case.GetLastWeightFromExercise
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -73,7 +66,7 @@ class ExercisesMuscularGroupViewModel @Inject constructor(
             }
         }
     }
-    fun getWeights(){
+    private fun getWeights(){
         viewModelScope.launch {
             val weights = mutableListOf<Float>()
             _exercises.value.forEach {

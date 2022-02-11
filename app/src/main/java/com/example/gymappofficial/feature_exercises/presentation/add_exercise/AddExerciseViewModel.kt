@@ -4,9 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.gymappofficial.R
-import com.example.gymappofficial.core.domain.states.StandardTextFieldState
-import com.example.gymappofficial.core.presentation.util.UiEvent
+import com.example.gymappofficial.core.presentation.ui.util.UiEvent
 import com.example.gymappofficial.core.util.Resource
 import com.example.gymappofficial.core.util.UiText
 import com.example.gymappofficial.feature_exercises.domain.use_case.AddExerciseUseCase
@@ -29,10 +27,10 @@ class AddExerciseViewModel @Inject constructor(
 
     fun onEvent(event: AddExerciseEvent) {
         when (event) {
-            is AddExerciseEvent.EnteredDescription -> {
+            is AddExerciseEvent.EnteredName -> {
                 _state.value = state.value.copy(description = event.value)
             }
-            is AddExerciseEvent.EnteredName -> {
+            is AddExerciseEvent.EnteredDescription -> {
                 _state.value = state.value.copy(name = event.value)
             }
             is AddExerciseEvent.Create -> {

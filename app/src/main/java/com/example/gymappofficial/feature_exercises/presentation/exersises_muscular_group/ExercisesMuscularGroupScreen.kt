@@ -1,8 +1,6 @@
 package com.example.gymappofficial.feature_exercises.presentation.exersises_muscular_group
 
 import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -12,18 +10,15 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.DismissDirection.EndToStart
 import androidx.compose.material.DismissDirection.StartToEnd
-import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.Icons.Default
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -34,8 +29,8 @@ import com.example.gymappofficial.core.domain.models.Exercise
 import com.example.gymappofficial.core.presentation.ui.theme.*
 import com.example.gymappofficial.R
 import com.example.gymappofficial.core.presentation.components.StandardScaffold
-import com.example.gymappofficial.core.presentation.util.UiEvent
-import com.example.gymappofficial.core.presentation.util.asString
+import com.example.gymappofficial.core.presentation.ui.util.UiEvent
+import com.example.gymappofficial.core.presentation.ui.util.asString
 import com.example.gymappofficial.core.util.Screen
 import kotlinx.coroutines.flow.collectLatest
 

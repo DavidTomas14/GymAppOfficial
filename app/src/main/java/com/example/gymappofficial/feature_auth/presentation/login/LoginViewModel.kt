@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gymappofficial.core.domain.states.StandardTextFieldState
-import com.example.gymappofficial.core.presentation.util.UiEvent
+import com.example.gymappofficial.core.presentation.ui.util.UiEvent
 import com.example.gymappofficial.core.util.Resource
 import com.example.gymappofficial.core.util.Screen
 import com.example.gymappofficial.core.util.UiText

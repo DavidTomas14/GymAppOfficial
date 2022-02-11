@@ -18,8 +18,8 @@ import com.example.gymappofficial.R
 import com.example.gymappofficial.core.presentation.components.SpannableClickableText
 import com.example.gymappofficial.core.presentation.components.StandardTextField
 import com.example.gymappofficial.core.presentation.ui.theme.*
-import com.example.gymappofficial.core.presentation.util.UiEvent
-import com.example.gymappofficial.core.presentation.util.asString
+import com.example.gymappofficial.core.presentation.ui.util.UiEvent
+import com.example.gymappofficial.core.presentation.ui.util.asString
 import com.example.gymappofficial.core.util.Screen
 import com.example.gymappofficial.feature_auth.domain.models.AuthError
 import kotlinx.coroutines.flow.collectLatest

@@ -1,6 +1,7 @@
 package com.example.gymappofficial.feature_exercises.data.remote
 
 import com.example.gymappofficial.core.data.dto.response.BasicApiResponse
+import com.example.gymappofficial.core.util.Constants
 import com.example.gymappofficial.core.util.QueryParams
 import com.example.gymappofficial.core.util.QueryParams.PARAM_EXERCISE_ID
 import com.example.gymappofficial.core.util.QueryParams.PARAM_MUSCULAR_GROUP
@@ -49,6 +50,6 @@ interface ExercisesApi {
     ): BasicApiResponse<Float>
 
     companion object{
-        const val BASE_URL = "http://10.0.2.2:8001/"
+        const val BASE_URL = Constants.BASE_URL
     }
 }

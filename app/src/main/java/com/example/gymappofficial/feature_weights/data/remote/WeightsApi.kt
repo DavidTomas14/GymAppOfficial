@@ -3,6 +3,7 @@ package com.example.gymappofficial.feature_weights.data.remote
 import com.dtalonso.data.requests.DeleteRequest
 import com.example.gymappofficial.core.data.dto.response.BasicApiResponse
 import com.example.gymappofficial.core.domain.models.Weight
+import com.example.gymappofficial.core.util.Constants
 import com.example.gymappofficial.core.util.QueryParams
 import com.example.gymappofficial.core.util.QueryParams.PARAM_EXERCISE_ID
 import com.example.gymappofficial.feature_exercises.data.dto.request.UpdateExerciseRequest
@@ -33,6 +34,6 @@ interface WeightsApi {
     ): BasicApiResponse<Unit>
 
     companion object{
-        const val BASE_URL = "http://10.0.2.2:8001/"
+        const val BASE_URL = Constants.BASE_URL
     }
 }

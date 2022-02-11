@@ -3,13 +3,9 @@ package com.example.gymappofficial.feature_home_screen.presentation
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.example.gymappofficial.core.presentation.util.UiEvent
-import com.example.gymappofficial.feature_home_screen.util.Constants
 import com.example.gymappofficial.feature_home_screen.util.Constants.MOTIVATIONAL_PHRASES
 import com.example.gymappofficial.feature_home_screen.util.Constants.QUALIFIERS_LIST
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import javax.inject.Inject
 import kotlin.random.Random
 

@@ -23,8 +23,8 @@ import androidx.navigation.NavController
 import com.example.gymappofficial.R
 import com.example.gymappofficial.core.presentation.components.StandardScaffold
 import com.example.gymappofficial.core.presentation.ui.theme.*
-import com.example.gymappofficial.core.presentation.util.UiEvent
-import com.example.gymappofficial.core.presentation.util.asString
+import com.example.gymappofficial.core.presentation.ui.util.UiEvent
+import com.example.gymappofficial.core.presentation.ui.util.asString
 import kotlinx.coroutines.flow.collectLatest
 import timber.log.Timber
 

@@ -49,7 +49,7 @@ class WeightRepositoryImpl(
         return try {
             val response = api.get(exerciseId)
             if (response.successful) {
-                val weights = mutableListOf<Weight>()
+                val weights = response.data!!
                 Resource.Success(weights)
             } else {
                 response.message?.let { msg ->

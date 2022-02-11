@@ -1,6 +1,7 @@
 package com.example.gymappofficial.feature_auth.data.remote
 
 import com.example.gymappofficial.core.data.dto.response.BasicApiResponse
+import com.example.gymappofficial.core.util.Constants
 import com.example.gymappofficial.feature_auth.data.dto.request.AccountAuthRequest
 import com.example.gymappofficial.feature_auth.data.dto.response.AuthResponse
 import retrofit2.Response
@@ -24,6 +25,6 @@ interface AuthApi {
     suspend fun authenticate()
 
     companion object{
-        const val BASE_URL = "http://10.0.2.2:8001/"
+        const val BASE_URL = Constants.BASE_URL
     }
 }

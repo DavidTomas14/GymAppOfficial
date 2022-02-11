@@ -2,7 +2,7 @@ package com.example.gymappofficial.feature_auth.presentation.splash
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.gymappofficial.core.presentation.util.UiEvent
+import com.example.gymappofficial.core.presentation.ui.util.UiEvent
 import com.example.gymappofficial.core.util.Resource
 import com.example.gymappofficial.core.util.Screen
 import com.example.gymappofficial.feature_auth.domain.use_case.AuthenticateUseCase

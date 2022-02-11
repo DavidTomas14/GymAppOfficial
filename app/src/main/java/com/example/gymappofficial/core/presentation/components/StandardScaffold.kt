@@ -41,7 +41,7 @@ fun StandardScaffold(
             contentDescription = "Home"
         ),
         BottomNavItem(
-            route = Screen.ExerciseHistoryScreen.route,
+            route = Screen.ExerciseHistoryScreen.route + "/{${Constants.NAVARG_EXERCISE_ID}}",
             icon = Icons.Filled.Timeline,
             contentDescription = "Historial"
         )
@@ -99,9 +99,9 @@ fun StandardScaffold(
                             ) {
                                 when(navController.currentDestination?.route){
                                      Screen.ExerciseInfoScreen.route + "/{${Constants.NAVARG_EXERCISE_ID}}" ->{
-                                         navController.navigate(Screen.ExerciseHistoryScreen.route)
+                                         navController.navigate(Screen.ExerciseHistoryScreen.route + "/{${Constants.NAVARG_EXERCISE_ID}}")
                                      }
-                                    Screen.ExerciseHistoryScreen.route -> {
+                                    else-> {
                                         navController.popBackStack()
                                     }
                                 }

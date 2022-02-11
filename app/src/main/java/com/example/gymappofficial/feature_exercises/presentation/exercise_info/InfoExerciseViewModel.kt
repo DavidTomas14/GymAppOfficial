@@ -7,8 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.gymappofficial.R
 import com.example.gymappofficial.core.domain.models.Exercise
-import com.example.gymappofficial.core.domain.models.Weight
-import com.example.gymappofficial.core.presentation.util.UiEvent
+import com.example.gymappofficial.core.presentation.ui.util.UiEvent
 import com.example.gymappofficial.core.util.Constants.NAVARG_EXERCISE_ID
 import com.example.gymappofficial.core.util.Resource
 import com.example.gymappofficial.core.util.UiText

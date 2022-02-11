@@ -35,5 +35,8 @@
     <string name="exercise_successfully_updated">Exercise successfully updated!</string>
     <string name="exercise_successfully_created">Exerxise successfully created!</string>
     <string name="havent_got_any_weights_yet">You havent got any weights yet!</string>
+    <string name="addWeight">Add Weight</string>
+    <string name="weight">Weight</string>
+    <string name="comment">Comment</string>
 
 </resources>

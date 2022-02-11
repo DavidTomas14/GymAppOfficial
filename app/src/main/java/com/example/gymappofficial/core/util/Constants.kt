@@ -16,4 +16,7 @@ object Constants {
     const val NAVARG_MUSCULAR_GROUP = "muscular_group"
     const val NAVARG_EXERCISE_ID = "exercise_id"
 
+    // "https://secure-river-09900.herokuapp.com/"
+    //"http://10.0.2.2:8080/"
+    const val BASE_URL = "https://secure-river-09900.herokuapp.com/"
 }
